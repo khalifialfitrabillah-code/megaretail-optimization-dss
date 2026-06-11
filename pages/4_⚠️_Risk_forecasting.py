@@ -165,42 +165,6 @@ st.plotly_chart(
 st.markdown("---")
 
 # =====================================================
-# SERVICE LEVEL IMPACT
-# =====================================================
-
-st.subheader("📦 Service Level Overview")
-
-avg_service_level = df["Service_Level"].mean()
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.metric(
-        "Average Service Level",
-        f"{avg_service_level:.2f}%"
-    )
-
-with col2:
-    st.metric(
-        "Inventory Records",
-        len(df)
-    )
-
-fig = px.histogram(
-    df,
-    x="Service_Level",
-    nbins=20,
-    title="Service Level Distribution"
-)
-
-st.plotly_chart(
-    fig,
-    use_container_width=True
-)
-
-st.markdown("---")
-
-# =====================================================
 # DECISION SUPPORT
 # =====================================================
 
