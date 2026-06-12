@@ -157,29 +157,21 @@ st.markdown("---")
 # INVENTORY TURNOVER
 # =====================================================
 
-st.subheader("🔄 Inventory Turnover")
-
-turnover_df = pd.DataFrame({
-    "Metric": [
-        "Inventory Turnover"
-    ],
-    "Value": [
-        0.59
-    ]
+benchmark_df = pd.DataFrame({
+    "Category": ["Current", "Target"],
+    "Value": [0.59, 1.00]
 })
 
 fig = px.bar(
-    turnover_df,
-    x="Metric",
+    benchmark_df,
+    x="Category",
     y="Value",
+    color="Category",
     text="Value",
-    title="Average Inventory Turnover"
+    title="Inventory Turnover Benchmark"
 )
 
-st.plotly_chart(
-    fig,
-    use_container_width=True
-)
+st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("---")
 

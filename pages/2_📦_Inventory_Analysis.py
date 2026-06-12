@@ -133,29 +133,6 @@ fig = px.box(
 
 st.plotly_chart(fig, use_container_width=True)
 
-# ==================================
-# TOP INVENTORY TURNOVER
-# ==================================
-
-st.subheader("🏆 Top 10 Inventory Turnover")
-
-top_turnover = (
-    df.nlargest(10, "Inventory_Turnover")
-      .sort_values("Inventory_Turnover")
-)
-
-fig = px.bar(
-    top_turnover,
-    x="Inventory_Turnover",
-    y=top_turnover["Product_ID"].astype(str),
-    orientation="h",
-    color="Inventory_Turnover",
-    text="Inventory_Turnover"
-)
-
-fig.update_traces(textposition="outside")
-
-st.plotly_chart(fig, use_container_width=True)
 
 # ==================================
 # DATA PREVIEW

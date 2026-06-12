@@ -273,8 +273,15 @@ elif scenario == "Service Level +5%":
 
     st.subheader("⭐ Scenario 5 : Service Level Increase")
 
+    # ==========================================
+    # HASIL COLAB
+    # ==========================================
+
     current_sl = 95.33
     target_sl = 100.00
+
+    initial_ss = 512.17
+    required_ss = 537.24
 
     col1, col2 = st.columns(2)
 
@@ -290,29 +297,109 @@ elif scenario == "Service Level +5%":
             f"{target_sl:.2f}%"
         )
 
+    st.markdown("---")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.metric(
+            "Average Initial Safety Stock",
+            f"{initial_ss:.2f}"
+        )
+
+    with col2:
+        st.metric(
+            "Average Required Safety Stock",
+            f"{required_ss:.2f}"
+        )
+
+    st.markdown("---")
+
+    # ==========================================
+    # CHART SESUAI COLAB
+    # ==========================================
+
     comparison_df = pd.DataFrame({
-        "Level": [
-            "Current",
-            "Target"
+        "Service Tier": [
+            "Current SL",
+            "Target SL (+5%)"
         ],
-        "Service Level": [
-            current_sl,
-            target_sl
+        "Avg Safety Stock Required": [
+            initial_ss,
+            required_ss
         ]
     })
 
     fig = px.bar(
         comparison_df,
-        x="Level",
-        y="Service Level",
-        color="Level",
-        text="Service Level"
+        x="Service Tier",
+        y="Avg Safety Stock Required",
+        color="Service Tier",
+        text="Avg Safety Stock Required",
+        title="Scenario 5: Safety Stock Inflation & Holding Cost Risk"
+    )
+
+    fig.update_traces(
+        texttemplate="%{text:.2f}",
+        textposition="outside"
+    )
+
+    fig.update_layout(
+        xaxis_title="Service Tier",
+        yaxis_title="Average Units",
+        height=550
     )
 
     st.plotly_chart(
         fig,
         use_container_width=True
     )
+
+    st.markdown("---")
+
+    st.warning("""
+### Business Impact
+
+Current Service Level : 95.33%
+
+Target Service Level : 100.00%
+
+Average Initial Safety Stock : 512.17 units
+
+Average Required Safety Stock : 537.24 units
+
+Implications:
+
+• Safety Stock meningkat
+
+• Holding Cost meningkat
+
+• Risiko stockout menurun
+
+• Customer Service meningkat
+
+• Inventory investment bertambah
+""")
+
+    st.warning("""
+### Supply Chain Impact
+
+Original Lead Time Average : 14.89 Days
+
+Delayed Lead Time Average : 22.34 Days
+
+Potential Impacts:
+
+• Reorder Point meningkat
+
+• Safety Stock meningkat
+
+• Risiko stockout bertambah
+
+• Respon terhadap permintaan menjadi lebih lambat
+
+• Holding Cost berpotensi meningkat
+""")
 
 # =====================================================
 # RECOMMENDATION

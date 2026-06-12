@@ -150,44 +150,6 @@ st.plotly_chart(
 st.markdown("---")
 
 # =====================================================
-# TOP FORECAST PRODUCTS
-# =====================================================
-
-st.subheader("🏆 Top 10 Forecast Demand")
-
-top_forecast = df.nlargest(
-    10,
-    "Forecast_Demand"
-)
-
-fig = px.bar(
-    top_forecast,
-    x="Product_ID",
-    y="Forecast_Demand",
-    color="Forecast_Demand",
-    text="Forecast_Demand",
-    title="Top Forecast Products"
-)
-
-st.plotly_chart(
-    fig,
-    use_container_width=True
-)
-
-st.dataframe(
-    top_forecast[
-        [
-            "Product_ID",
-            "Demand",
-            "Forecast_Demand"
-        ]
-    ],
-    use_container_width=True
-)
-
-st.markdown("---")
-
-# =====================================================
 # FORECAST INSIGHT
 # =====================================================
 
