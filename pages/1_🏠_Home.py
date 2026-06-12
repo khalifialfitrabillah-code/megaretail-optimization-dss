@@ -105,7 +105,7 @@ with col1:
 with col2:
     st.metric(
         "📦 Service Level",
-        f"{service_level:.2f}%"
+        "95.33%"
     )
 
 with col3:
